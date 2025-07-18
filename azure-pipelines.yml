@@ -1,16 +1,7 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
-trigger:
-- main
 
 pool:
-  # solution: '**/*.sln'
   vmImage: 'windows-latest'
   name: 'Agentes_Compilacion'
-
 
 variables:
   solution: '**/*.sln'
@@ -23,40 +14,38 @@ variables:
 name: $(major).$(minor)$(Rev:.rr)
 
 steps:
+# 1. Instalar NuGet
 - task: NuGetToolInstaller@1
-  displayName: 'Install nuget'
+  displayName: 'Install NuGet'
 
-- task: NuGetCommand@2
-  displayName: 'Restore nuget packages'
-  inputs:
-    restoreSolution: '$(solution)'
+# 2. Soap con feeds
+- task: NuGetSoap@0
+  displayName: 'Soap with Azure Artifacts'
 
+# 3. Restauración
 - task: NuGetCommand@2
+  displayName: 'Restore packages from internal feed'
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.sln'
+    restoreSolution: '$(solution)'
     feedsToUse: 'select'
-    vstsFeed: '80c17264-11a0-4f4d-98e0-86e0e5e465ce/aad85af5-a86e-428b-8fc6-c9b8d5134211'
-    
+    vstsFeed: '80c17264-11a0-4f4d-98e0-86e0e5e465ce/90471a02-3bf6-420e-8a67-8ac2f550d3c1'
+    noCache: true
 
+# 4. Compilación
 - task: VSBuild@1
-  displayName: 'Build in NET8'
+  displayName: 'Build solution'
   inputs:
     solution: '$(solution)'
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+    
+# 5. Publicación en feed
 - task: DotNetCoreCLI@2
-  displayName: 'Create nupkgs'
-  inputs:
-    command: 'pack'
-    packagesToPack: 'src/Yape.Library.Encryptor/*.csproj'
-    versioningScheme: byBuildNumber
-
-- task: DotNetCoreCLI@2
+  displayName: 'Push Yape.Library.Soap.Client'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/Yape.Library.Soap.Client.*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '80c17264-11a0-4f4d-98e0-86e0e5e465ce/90471a02-3bf6-420e-8a67-8ac2f550d3c1'

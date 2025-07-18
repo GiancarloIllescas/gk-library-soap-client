@@ -7,7 +7,7 @@
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>
 	  <PackageDescription>
-		  Librería de...
+		  Cliente SOAP para .NET 8 con retries Polly, logging y extensión de DI; expone un puerto para consumir servicios WCF.
 	  </PackageDescription>
   </PropertyGroup>
 
