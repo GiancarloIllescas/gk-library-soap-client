@@ -18,10 +18,6 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet'
 
-# 2. Soap con feeds
-- task: NuGetSoap@0
-  displayName: 'Soap with Azure Artifacts'
-
 # 3. Restauración
 - task: NuGetCommand@2
   displayName: 'Restore packages from internal feed'
