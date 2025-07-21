@@ -42,6 +42,6 @@ steps:
   displayName: 'Push Yape.Library.Soap.Client'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    packagesToPush: '$(Build.SourcesDirectory)/src/Yape.Library.Soap.Client/bin/Release/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '80c17264-11a0-4f4d-98e0-86e0e5e465ce/90471a02-3bf6-420e-8a67-8ac2f550d3c1'
