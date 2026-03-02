@@ -2,7 +2,9 @@
 
   <PropertyGroup>
 	  <TargetFramework>net8.0</TargetFramework>
-	  <RootNamespace>Yape.Library.Soap.Client</RootNamespace>
+	  <RootNamespace>GK.Library.Soap.Client</RootNamespace>
+    <AssemblyName>GK.Library.Soap.Client</AssemblyName>
+    <PackageId>GK.Library.Soap.Client</PackageId>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>

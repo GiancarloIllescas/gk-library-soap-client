@@ -1,5 +1,5 @@
 
-# Yape.Library.Soap.Client
+# GK.Library.Soap.Client
 
 NuGet para **simplificar y estandarizar** el consumo de servicios SOAP (WCF) en .NET 8 con enfoque de arquitectura hexagonal.
 
@@ -26,7 +26,7 @@ NuGet para **simplificar y estandarizar** el consumo de servicios SOAP (WCF) en 
 
 ```bash
 # Se debe tener mapeado el feed donde se encuentra el nuget
-dotnet add package Yape.Library.Soap.Client
+dotnet add package GK.Library.Soap.Client
 # o agregar manualmente desde Visual Studio
 ```
 

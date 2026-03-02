@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using System.ServiceModel;
-using Yape.Library.Soap.Client.Application.Ports.Out;
-using Yape.Library.Soap.Client.Application.Ports.Out.Options;
-using Yape.Library.Soap.Client.Infrastructure.Adapters.Out.SoapClient;
+using GK.Library.Soap.Client.Application.Ports.Out;
+using GK.Library.Soap.Client.Application.Ports.Out.Options;
+using GK.Library.Soap.Client.Infrastructure.Adapters.Out.SoapClient;
 
-namespace Yape.Library.Soap.Client.Infrastructure.Extensions
+namespace GK.Library.Soap.Client.Infrastructure.Extensions
 {
     public static class SoapClientExtensions
     {
